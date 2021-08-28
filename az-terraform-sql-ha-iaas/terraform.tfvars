@@ -1,7 +1,7 @@
-subscription_id = ""
-client_id       = ""
-client_secret   = ""
-tenant_id       = ""
+subscription_id = "" #subscription id 
+client_id       = "" #client id
+client_secret   = "" #secret 
+tenant_id       = "" #Azure tenant id
 sql-1-vm-name   = "sqlserver-1" #Name of SQL-1 Host - Will be same for VM Hostname 
 sql-2-vm-name   = "sqlserver-2" #Name of SQL-2 Host - Will be same for VM Hostname 
 subnet_name     = "dbsubnet"    #Subnet Name where we want to deploy the cluster - Needs to already present.
