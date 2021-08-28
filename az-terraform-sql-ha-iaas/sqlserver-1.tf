@@ -50,7 +50,7 @@ resource "azurerm_virtual_machine_data_disk_attachment" "sql-1-vm-datadisk" {
 }
 resource "azurerm_mssql_virtual_machine" "sqlvm-1" {
     virtual_machine_id               = azurerm_windows_virtual_machine.sql-1-vm.id
-    sql_license_type                 = "AHUB"
+    sql_license_type                 = "PAYG"
     r_services_enabled               = false
     sql_connectivity_port            = 1433
     sql_connectivity_type            = "PRIVATE"
