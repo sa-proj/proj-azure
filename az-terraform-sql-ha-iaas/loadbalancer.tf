@@ -38,7 +38,7 @@ resource "azurerm_network_interface_backend_address_pool_association" "sqlvm2BEA
 resource "azurerm_lb_rule" "sqlLBRule" {
   resource_group_name            = var.resource_group
   loadbalancer_id                = "${azurerm_lb.sqlinternalLB.id}"
-  name                           = "${var.load-balancer-name}-lbr"
+  name                           = "${var.load-balancer-name}-default-port-lbr"
   protocol                       = "Tcp"
   frontend_port                  = 1433
   backend_port                   = 1433
@@ -52,7 +52,7 @@ resource "azurerm_lb_rule" "sqlLBRule" {
 resource "azurerm_lb_rule" "sqlLBHAEndpointRule" {
   resource_group_name            = var.resource_group
   loadbalancer_id                = "${azurerm_lb.sqlinternalLB.id}"
-  name                           = "${var.load-balancer-name}-lbr"
+  name                           = "${var.load-balancer-name}-hadr-endpoint-lbr"
   protocol                       = "Tcp"
   frontend_port                  = 5022
   backend_port                   = 5022
@@ -61,7 +61,7 @@ resource "azurerm_lb_rule" "sqlLBHAEndpointRule" {
   backend_address_pool_id        = azurerm_lb_backend_address_pool.sqlLBBE.id
   enable_floating_ip             = true
 }
-#Create a health probe for the load balencer
+#Create a health probe for the load balancer
 resource "azurerm_lb_probe" "sqlLBProbe" {
   resource_group_name = var.resource_group
   loadbalancer_id     = "${azurerm_lb.sqlinternalLB.id}"
