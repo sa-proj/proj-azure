@@ -1,7 +1,7 @@
-subscription_id = "ea530251-d69d-4566-9d7a-60d0f85909f3"
-client_id       = "beb6182f-f58c-4e8e-8fa8-4289bfc5d782"
-client_secret   = "-eEz6QaG737ew6-~Fk~1pAEpGVtIwovmq5"
-tenant_id       = "538d8a86-1987-4b6d-84a7-74d9488d05d0"
+subscription_id = ""
+client_id       = ""
+client_secret   = ""
+tenant_id       = ""
 sql-1-vm-name   = "sqlserver-1" #Name of SQL-1 Host - Will be same for VM Hostname 
 sql-2-vm-name   = "sqlserver-2" #Name of SQL-2 Host - Will be same for VM Hostname 
 subnet_name     = "dbsubnet"    #Subnet Name where we want to deploy the cluster - Needs to already present.
