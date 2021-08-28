@@ -34,6 +34,7 @@ resource "azurerm_network_interface_backend_address_pool_association" "sqlvm2BEA
 }
 
 #Create the load balencer rules
+#rule to connect to listener on default port
 resource "azurerm_lb_rule" "sqlLBRule" {
   resource_group_name            = var.resource_group
   loadbalancer_id                = "${azurerm_lb.sqlinternalLB.id}"
@@ -46,7 +47,20 @@ resource "azurerm_lb_rule" "sqlLBRule" {
   backend_address_pool_id        = azurerm_lb_backend_address_pool.sqlLBBE.id
   enable_floating_ip             = true
 }
-
+#rule to connect to listener on port 5022 required for distributed ag
+#if this non distributed AG setup then you can remove this rule 
+resource "azurerm_lb_rule" "sqlLBHAEndpointRule" {
+  resource_group_name            = var.resource_group
+  loadbalancer_id                = "${azurerm_lb.sqlinternalLB.id}"
+  name                           = "${var.load-balancer-name}-lbr"
+  protocol                       = "Tcp"
+  frontend_port                  = 5022
+  backend_port                   = 5022
+  frontend_ip_configuration_name = "${var.load-balancer-name}-fipc"
+  probe_id                       = "${azurerm_lb_probe.sqlLBProbe.id}"
+  backend_address_pool_id        = azurerm_lb_backend_address_pool.sqlLBBE.id
+  enable_floating_ip             = true
+}
 #Create a health probe for the load balencer
 resource "azurerm_lb_probe" "sqlLBProbe" {
   resource_group_name = var.resource_group
